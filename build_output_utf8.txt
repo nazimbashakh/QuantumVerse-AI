@@ -1,0 +1,24 @@
+﻿   Γû▓ Next.js 15.1.0
+   - Environments: .env
+
+node.exe : 
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" 
+"C:\Users\Dell\AppData\Roaming\n ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:S 
+   tring) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandErro 
+   r
+ 
+> Build error occurred
+[Error: EINVAL: invalid argument, readlink 
+'E:\OneDrive\Desktop\QUANTUM Verse 
+AI\.next\build-manifest.json'] {
+  errno: -4071,
+  code: 'EINVAL',
+  syscall: 'readlink',
+  path: 'E:\\OneDrive\\Desktop\\QUANTUM Verse 
+AI\\.next\\build-manifest.json'
+}

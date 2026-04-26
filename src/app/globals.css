@@ -1,0 +1,220 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #080818;
+    --foreground: #F8FAFC;
+  }
+
+  /* Dashboard-only CSS variables — scoped to [data-theme="dashboard"] */
+  [data-theme="dashboard"] {
+    --dash-bg:        #0D0D1F;
+    --dash-panel:     #12122A;
+    --dash-card:      #13132B;
+    --dash-border:    #1E1E3F;
+    --dash-violet:    #6D28D9;
+    --dash-electric:  #7C3AED;
+    --dash-lavender:  #A78BFA;
+    --dash-cyan:      #06B6D4;
+    --dash-success:   #10B981;
+    --dash-warning:   #F59E0B;
+    --dash-error:     #EF4444;
+    --dash-text-pri:  #F1F5F9;
+    --dash-text-sec:  #94A3B8;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  /* Landing page glass panel (unchanged) */
+  .glass-panel {
+    @apply bg-background/60 backdrop-blur-xl border border-white/5 rounded-2xl shadow-glass;
+  }
+
+  .glass-panel-interactive {
+    @apply glass-panel transition-all duration-300 hover:border-quantum-purple/40 hover:shadow-card-hover hover:-translate-y-1;
+  }
+
+  /* Dashboard-specific glass panel — deep navy glassmorphism */
+  .dash-panel {
+    background: rgba(19, 19, 43, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid #1E1E3F;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(13, 13, 31, 0.8);
+  }
+
+  .dash-panel-hover {
+    @apply dash-panel transition-all duration-300;
+  }
+
+  .dash-panel-hover:hover {
+    border-color: rgba(109, 40, 217, 0.4);
+    box-shadow: 0 8px 40px rgba(109, 40, 217, 0.25);
+    transform: translateY(-2px);
+  }
+
+  /* Quantum glow effects */
+  .quantum-glow {
+    @apply relative;
+  }
+
+  .quantum-glow::before {
+    content: '';
+    @apply absolute inset-0 bg-quantum-purple/30 blur-2xl z-[-1] transition-opacity duration-300;
+  }
+
+  /* Landing page button (unchanged) */
+  .btn-quantum {
+    @apply relative overflow-hidden bg-gradient-to-r from-quantum-purple to-quantum-violet text-white px-8 py-4 rounded-xl font-bold tracking-wide transition-all duration-300 hover:shadow-glow-purple hover:scale-[1.02] active:scale-[0.98];
+  }
+
+  .btn-quantum::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-quantum-cyan to-quantum-purple opacity-0 transition-opacity duration-500 z-0;
+  }
+
+  .btn-quantum:hover::before {
+    @apply opacity-30;
+  }
+
+  .btn-quantum span {
+    @apply relative z-10 flex items-center justify-center gap-2;
+  }
+
+  /* Dashboard violet gradient button */
+  .btn-dash {
+    @apply relative overflow-hidden text-white font-bold tracking-wide rounded-xl transition-all duration-300;
+    background: linear-gradient(135deg, #6D28D9, #7C3AED);
+    box-shadow: 0 0 20px rgba(109, 40, 217, 0.3);
+  }
+
+  .btn-dash:hover {
+    box-shadow: 0 0 30px rgba(109, 40, 217, 0.5);
+    transform: scale(1.02);
+  }
+
+  .btn-dash:active {
+    transform: scale(0.98);
+  }
+
+  /* Dashboard input with purple glow focus */
+  .dash-input {
+    background: rgba(18, 18, 42, 0.8);
+    border: 1px solid #1E1E3F;
+    color: #F1F5F9;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+    outline: none;
+  }
+
+  .dash-input::placeholder {
+    color: #94A3B8;
+    opacity: 0.5;
+  }
+
+  .dash-input:focus {
+    border-color: #6D28D9;
+    box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.2);
+  }
+
+  /* Dashboard stat card */
+  .dash-stat-card {
+    @apply dash-panel transition-all duration-300 cursor-default;
+  }
+
+  .dash-stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(109, 40, 217, 0.2);
+    border-color: rgba(109, 40, 217, 0.3);
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-quantum-dash-lavender to-quantum-dash-cyan;
+  }
+
+  .text-gradient-land {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-quantum-purple to-quantum-cyan;
+  }
+
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  /* Scrollbar for dark dashboard */
+  .dash-scroll::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .dash-scroll::-webkit-scrollbar-track {
+    background: #0D0D1F;
+  }
+
+  .dash-scroll::-webkit-scrollbar-thumb {
+    background: #1E1E3F;
+    border-radius: 4px;
+  }
+
+  .dash-scroll::-webkit-scrollbar-thumb:hover {
+    background: #6D28D9;
+  }
+}
+
+/* Keyframes */
+@keyframes quantum-ripple {
+  0% { box-shadow: 0 0 0 0 rgba(109, 40, 217, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(109, 40, 217, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(109, 40, 217, 0); }
+}
+
+@keyframes ticker-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes count-up-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+.animate-quantum-ripple {
+  animation: quantum-ripple 1.5s infinite;
+}
+
+.animate-ticker {
+  animation: ticker-scroll 30s linear infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(109,40,217,0.1), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
